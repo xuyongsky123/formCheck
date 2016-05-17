@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>input框清空和密码的明文显示</title>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <link href="css/formCheck.css" rel="stylesheet">
+   <link href="css/style.css" rel="stylesheet"><!--自己书写input样式-->
+
+   <script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+   <script src="js/formCheck.js"></script>
+   <script>
+    $(function(){
+      
+
+        $('#btn1').click(function(){
+          var a = $('#form1').formCheck({
+            errMsg:{
+              test1:{
+                require:'手机号码不能为空',
+                regErr:'手机号码格式不正确'
+              },
+              test2:{
+                require:'密码输入框不能为空',
+              },
+              test4:{
+                require:'选择框必选'
+              }
+            }
+          },function(submitFlag,formEle){
+            //成功回调
+
+            console.log('校验结果'+submitFlag);
+            console.log('提交表单'+formEle)
+
+          },function(status,errMsg,formEle){
+            //校验表单有错回调
+              console.log(status);
+              console.log(errMsg);
+              console.log(formEle);
+          });
+
+
+          console.log('校验结果'+a);
+
+
+        });
+
+
+
+    });
+   </script>
+
+</head>
+<body>
+
+  <form id="form1">
+
+    <input id="test1" type="text" require="true" xy-pattern="/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/" placeholder="请输入手机号码" />
+    <input id="test2" type="password" require="true" />
+    <input id="test3" type="text" />
+
+    <select id="test4" require="true">
+      <option selected="selected" disabled="disabled">请选择</option>
+      <option value="1">test2</option>
+      <option value="2">test3</option>
+    </select>
+
+    <input id="btn1" type="button" value="校验提交" />
+
+    <textarea require="true"></textarea>
+
+  </form>
+
+</body>
+</html>
