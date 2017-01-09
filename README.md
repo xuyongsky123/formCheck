@@ -1,4 +1,4 @@
-<h2>formCheck简介<a href="http://www.shdnfw.com/plugin/formCheck/demo.html"><small>表单简单校验formCheck使用示例</small></a></h2>
+<h2>formCheck简介<a href="http://www.shdnfw.com/plugin/formCheck/demo.html">表单简单校验formCheck使用示例</a></h2>
 <p>基于jQuery插件开发的自定义插件-简单校验表单提交，包含input\textarea\select表单元素，只需在html标签元素上添加如下需要校验的内容：<br/>
 <strong>require="true"	//必填项（要求不能为空或不选）</strong><br/>
 <strong>xy-pattern="正则表达式"	//有则校验（校验当前表单元素输入格式是否合乎要求），没有则忽略</strong>
