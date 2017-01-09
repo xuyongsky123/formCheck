@@ -1,49 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>form表单简单校验示例</title>
+   <title>表单简单校验formCheck使用示例</title>
    <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
    
-   <link href="css/formCheck.css" rel="stylesheet">
-   <link href="css/style.css" rel="stylesheet"><!--自己书写input样式-->
+   <link href="css/formCheck.css" rel="stylesheet" />
+   <link href="css/index.css" rel="stylesheet" /><!--自己书写input样式-->
 
-   <script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
    <script src="js/formCheck.js"></script>
    <script>
     $(function(){
-        /*$('#btn1').click(function(){
-          var a = $('#form1').formCheck({
-            errMsg:{
-              test1:{
-                require:'手机号码不能为空',
-                regErr:'手机号码格式不正确'
-              },
-              test2:{
-                require:'密码输入框不能为空',
-              },
-              test4:{
-                require:'选择框必选'
-              }
-            }
-          },function(submitFlag,formEle){
-            //成功回调
 
-            console.log('校验结果'+submitFlag);
-            console.log('提交表单'+formEle)
-
-          },function(status,errMsg,formEle){
-            //校验表单有错回调
-              console.log(status);
-              console.log(errMsg);
-              console.log(formEle);
-          });
-
-
-          console.log('校验结果'+a);
-
-
-        });*/
         $('input[type="submit"]').click(function(){
 
             var a = $('#form1').formCheck({
@@ -57,6 +26,9 @@
                 },
                 test4:{
                   require:'选择框必选'
+                },
+                test5:{
+                  require:'填写框必填'
                 }
               }
             },function(submitFlag,formEle){
@@ -65,19 +37,21 @@
               console.log('校验结果'+submitFlag);
               console.log('提交表单'+formEle)
 
-            },function(status,errMsg,formEle){
-              //校验表单有错回调
+            },function(status,errMsg,domId,formEle){
+                //校验表单有错回调
                 console.log(status);
                 console.log(errMsg);
+                console.log(domId);
                 console.log(formEle);
+
+                $('#errText').html('status:'+status+'<br/>errMsg:'+errMsg+'<br/>domId:'+domId+'<br/>formEle:'+formEle);
             });
+
+            alert('当前表单校验状态：'+a);
 
             return a;
 
-
         });
-
-
 
     });
     
@@ -86,24 +60,41 @@
 </head>
 <body>
 
-  <form id="form1">
+  <div class="container">
+      <h2>表单简单校验formCheck使用示例</h2>
+      <div class="paramItem">
+        <strong>以下为测试数据<small>（填写测试）</small></strong>
+      </div>
 
-    
-    <input id="test2" type="password" require="true" />
-    <input id="test1" type="text" require="true" xy-pattern="/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/" placeholder="请输入手机号码" />
-    <input required id="test3" type="text" />
 
-    <select id="test4" require="true">
-      <option selected="selected" disabled="disabled">请选择</option>
-      <option value="1">test2</option>
-      <option value="2">test3</option>
-    </select>
+      <form id="form1" novalidate>
+        <label>默认浏览器自带校验（只需自定义属性required，这里我们直接禁用浏览器默认校验，在表单form元素中声明novalidate）</label><br/>
+        <input required id="test3" type="text" placeholder="请输入" /><br/><br/>
 
-    <input id="btn1" type="submit" value="校验提交" />
+        <label>仅需检验input是否已填</label><br/>
+        <input id="test2" type="password" require="true" placeholder="请输入密码" /><br/><br/>
 
-    <textarea require="true"></textarea>
+        <label>既要检验input是否已填，又要校验input给定的格式</label><br/>
+        <input id="test1" type="text" require="true" xy-pattern="/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/" placeholder="请输入手机号码" /><br/><br/>
 
-  </form>
+        <label>仅需检验select是否已选</label><br/>
+        <select id="test4" require="true">
+          <option selected="selected" disabled="disabled">请选择</option>
+          <option value="1">test2</option>
+          <option value="2">test3</option>
+        </select><br/><br/>
+
+        <label>仅需检验textarea是否已填</label><br/>
+        <textarea id="test5" require="true" placeholder="请输入" ></textarea><br/><br/>
+
+        <input type="submit" value="校验提交" /><br/><br/>
+
+        <div class="errText" id="errText"></div>
+
+      </form>
+
+  </div>
+  
 
 </body>
 </html>

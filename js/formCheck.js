@@ -46,15 +46,15 @@
 					if( _tmp == '' || _tmp == null ){
 						if(input.hasAttribute('id')){
 							if(paramsInner.hasPrototype(params.errMsg,$input.attr('id'))){
-								callback( paramsInner.errStatus.tipNull , params.errMsg[$input.attr('id')].require , form );
+								callback( paramsInner.errStatus.tipNull , params.errMsg[$input.attr('id')].require , $input.attr('id') , form );
 							}else{
 								//外部未定义错误描述使用默认错误描述
-								callback(paramsInner.errStatus.tipNull , paramsInner.errMsg.require , form );
+								callback(paramsInner.errStatus.tipNull , paramsInner.errMsg.require , $input.attr('id') , form );
 							}
 							
 						}else{
 							//外部未定义错误描述使用默认错误描述
-							callback( paramsInner.errStatus.tipNull , paramsInner.errMsg.require , form );
+							callback( paramsInner.errStatus.tipNull , paramsInner.errMsg.require , $input.attr('id') , form );
 						}
 
 						$input.addClass('inputErr');					
@@ -71,15 +71,15 @@
 				if( _tmp == '' || _tmp == null ){
 					if(input.hasAttribute('id')){
 						if(paramsInner.hasPrototype(params.errMsg,$input.attr('id'))){
-							callback( paramsInner.errStatus.tipNull , params.errMsg[$input.attr('id')].require , form );
+							callback( paramsInner.errStatus.tipNull , params.errMsg[$input.attr('id')].require , $input.attr('id') , form );
 						}else{
 							//外部未定义错误描述使用默认错误描述
-							callback(paramsInner.errStatus.tipNull , paramsInner.errMsg.require , form );
+							callback(paramsInner.errStatus.tipNull , paramsInner.errMsg.require , $input.attr('id') , form );
 						}
 						
 					}else{
 						//外部未定义错误描述使用默认错误描述
-						callback( paramsInner.errStatus.tipNull , paramsInner.errMsg.require , form );
+						callback( paramsInner.errStatus.tipNull , paramsInner.errMsg.require , $input.attr('id') , form );
 					}
 
 					$input.addClass('inputErr');					
@@ -97,14 +97,14 @@
 
 					if(input.hasAttribute('id')){
 						if(paramsInner.hasPrototype(params.errMsg,$input.attr('id'))){
-							callback( paramsInner.errStatus.tipErr , params.errMsg[$input.attr('id')].regErr , form );
+							callback( paramsInner.errStatus.tipErr , params.errMsg[$input.attr('id')].regErr , $input.attr('id') , form );
 						}else{
 							//外部未定义错误描述使用默认错误描述
-							callback( paramsInner.errStatus.tipErr , paramsInner.errMsg.regErr , form );
+							callback( paramsInner.errStatus.tipErr , paramsInner.errMsg.regErr , $input.attr('id') , form );
 						}
 					}else{
 						//外部未定义错误描述使用默认错误描述
-						callback( paramsInner.errStatus.tipErr , paramsInner.errMsg.regErr , form );
+						callback( paramsInner.errStatus.tipErr , paramsInner.errMsg.regErr , $input.attr('id') , form );
 					}
 
 					$input.addClass('inputErr');
